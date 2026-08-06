@@ -20,6 +20,10 @@ import {
   fetchEdgeeModels,
   getEdgeeApiKey,
 } from "../../src";
+import {
+  persistModels,
+  readStoredModels,
+} from "../../src/refresh-store-compat";
 
 function storeModelToConfig(model: Model<Api>): ProviderModelConfig {
   return {
@@ -75,7 +79,7 @@ export default async function (pi: ExtensionAPI) {
       : undefined,
     models: [],
     async refreshModels(context) {
-      const stored = await context.store.read();
+      const stored = await readStoredModels(context);
       const cachedModels = storeModelsToConfigs(stored?.models);
       const lookup: BuiltInModelLookup | undefined = latestRegistry
         ? createEdgeeLookup(latestRegistry, cachedModels)
@@ -90,8 +94,9 @@ export default async function (pi: ExtensionAPI) {
         const client = new EdgeeClient({ apiKey });
         const models = await fetchEdgeeModels(client, context.signal, lookup);
         if (models.length === 0) return cachedModels;
+        if (context.signal.aborted) return cachedModels;
 
-        await context.store.write({
+        await persistModels(context, {
           models: models.map(configToStoreModel),
           checkedAt: Date.now(),
         });
