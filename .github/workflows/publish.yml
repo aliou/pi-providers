@@ -51,11 +51,24 @@ jobs:
           pnpm changeset status --output=release.json 2>/dev/null || echo '{"releases":[]}' > release.json
           node <<'NODE'
           const fs = require('fs');
+          const path = require('path');
           const release = JSON.parse(fs.readFileSync('release.json', 'utf8'));
           const releases = release.releases?.filter(r => r.type !== 'none') || [];
 
-          let title = 'chore: release packages';
-          let commit = 'chore: release packages';
+          const dirs = fs.readdirSync('packages').filter(d => {
+            const pkgPath = path.join('packages', d, 'package.json');
+            return fs.statSync(path.join('packages', d)).isDirectory() && fs.existsSync(pkgPath);
+          });
+          const allPackages = dirs.map(d =>
+            JSON.parse(fs.readFileSync(path.join('packages', d, 'package.json'), 'utf8'))
+          );
+          const fallbackSummary = allPackages
+            .filter(pkg => pkg.name && pkg.version && !pkg.private)
+            .map(pkg => pkg.name + '@' + pkg.version)
+            .join(', ');
+
+          let title = 'Updating ' + fallbackSummary;
+          let commit = fallbackSummary;
           if (releases.length === 1) {
             const { name, newVersion } = releases[0];
             title = `Updating ${name} to version ${newVersion}`;
