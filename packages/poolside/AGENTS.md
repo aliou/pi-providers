@@ -1,18 +1,19 @@
 # pi-poolside
 
-Pi extension package for the Poolside inference API.
+Pi extension package for the Poolside inference API. Lives in the
+`pi-providers` monorepo under `packages/poolside`.
 
 ## Stack
 
-- TypeScript (strict mode), pnpm, Biome, Changesets
+- TypeScript (strict mode), pnpm workspace, Biome
 
 ## Scripts
 
 - `pnpm typecheck` - Type check
 - `pnpm lint` - Lint
 - `pnpm format` - Format
-- `pnpm check:lockfile` - Verify lockfile is in sync with package.json
-- `pnpm changeset` - Create changeset for versioning
+
+Run checks from the repo root with `pnpm -r <script>`.
 
 ## Structure
 

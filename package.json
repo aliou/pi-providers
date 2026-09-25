@@ -7,13 +7,17 @@
     "url": "https://github.com/aliou/pi-providers"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.0",
     "@earendil-works/pi-coding-agent": "0.84.0"
   },
   "scripts": {
     "typecheck": "pnpm -r typecheck",
     "lint": "pnpm -r lint",
     "format": "pnpm -r format",
-    "test": "pnpm -r test"
+    "test": "pnpm -r test",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish"
   },
   "packageManager": "pnpm@11.5.1"
 }

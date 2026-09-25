@@ -18,10 +18,12 @@ Monorepo of published Pi model provider extensions that are not in daily use
 - Peer packages Pi injects at runtime (`@earendil-works/pi-ai`,
   `@earendil-works/pi-coding-agent`) are optional peers in each package, with
   exact dev versions for local checks.
-- No per-package `shell.nix`, `.github/`, husky, or changesets. Add workspace
-  CI at the root when packages change.
-- Publishing: manual, per package, via `pnpm publish` from the package
-  directory. Update the package CHANGELOG when cutting a release.
+- No per-package `shell.nix`, `.github/`, or husky. Add workspace CI at the
+  root when packages change.
+- Versioning: changesets in independent mode, managed at the root. Run
+  `pnpm changeset` to record a change, `pnpm version` to consume changesets
+  (bumps versions and updates each package's CHANGELOG.md), and
+  `pnpm release` to publish changed packages to npm.
 
 ## Nix / shell
 
