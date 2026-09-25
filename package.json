@@ -1,0 +1,19 @@
+{
+  "name": "pi-providers",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliou/pi-providers"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "0.84.0"
+  },
+  "scripts": {
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "format": "pnpm -r format",
+    "test": "pnpm -r test"
+  },
+  "packageManager": "pnpm@11.5.1"
+}
