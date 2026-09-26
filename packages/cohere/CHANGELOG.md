@@ -1,5 +1,11 @@
 # @aliou/pi-cohere
 
+## 0.1.2
+
+### Patch Changes
+
+- 64f15cd: Point package metadata at the `aliou/pi-providers` monorepo. The code is unchanged; this patch exists so the npm page links to the new location and to exercise the monorepo release pipeline.
+
 ## 0.1.1
 
 ### Patch Changes
