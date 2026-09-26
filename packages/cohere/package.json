@@ -1,6 +1,7 @@
 {
   "name": "@aliou/pi-cohere",
   "version": "0.1.2",
+  "description": "Pi provider extension for Cohere models.",
   "license": "MIT",
   "type": "module",
   "private": false,

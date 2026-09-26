@@ -1,6 +1,7 @@
 {
   "name": "@aliou/pi-edgee",
   "version": "0.1.4",
+  "description": "Pi provider extension for Edgee, the Agent Gateway that compresses, routes, and observes LLM requests.",
   "license": "MIT",
   "type": "module",
   "private": false,
