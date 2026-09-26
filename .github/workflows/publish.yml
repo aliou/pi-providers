@@ -124,7 +124,7 @@ jobs:
           NODE
 
       - name: Stage packages
-        if: fromJSON(steps.check-publish.outputs.needs_staging)
+        if: steps.check-publish.outputs.needs_staging == 'true'
         run: |
           for row in $(PACKAGES_JSON='${{ steps.check-publish.outputs.packages }}' node -e "JSON.parse(process.env.PACKAGES_JSON).forEach(p=>console.log(p.dir))"); do
             echo "Staging $row"
@@ -134,7 +134,7 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
 
       - name: Create GitHub releases
-        if: fromJSON(steps.check-publish.outputs.needs_staging)
+        if: steps.check-publish.outputs.needs_staging == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
